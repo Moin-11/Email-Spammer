@@ -55,7 +55,7 @@ msg_count = 0
 # create and send email
 ''' Open a connection to the email server, then create and send the email message in separate into 
     chunks of 50 emails in order to avoid sending limits '''
-for b in range(2):
+for b in range(20):
 
     # open the email server connection
     server = smtp.SMTP(host=smtp_host, port=smtp_port)
@@ -63,7 +63,7 @@ for b in range(2):
     server.login(user=user, password=password)
 
     # create and send the message
-    for i in range(5):
+    for i in range(50):
         # check to see if this is the final message, which has a slightly different range
         if msg_count == 10:
             start_pos = (len(word_list) - final_msg_size)
@@ -91,7 +91,7 @@ for b in range(2):
         time.sleep(0.5)
 
     # delay each batch by 60 seconds to avoid sending limits
-    time.sleep(0)
+    time.sleep(60)
 
     server.close()
 
